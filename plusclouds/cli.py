@@ -2,7 +2,7 @@ from typing import Optional
 
 import typer
 
-from pc_cli import __app_name__, __version__
+from plusclouds import __app_name__, __version__
 
 app = typer.Typer()
 

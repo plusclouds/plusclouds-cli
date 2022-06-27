@@ -1,5 +1,5 @@
-from pc_cli import cli, __app_name__
-import pc_cli.commands.test_commands
+from plusclouds import cli, __app_name__
+import plusclouds.commands.test_commands
 
 
 def main():

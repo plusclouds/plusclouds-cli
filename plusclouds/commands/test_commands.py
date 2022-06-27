@@ -1,4 +1,4 @@
-from pc_cli import cli
+from plusclouds import cli
 import typer
 
 
