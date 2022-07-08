@@ -3,7 +3,7 @@ from plusclouds.enums.parameter_types import ParameterType
 from plusclouds.gateway.http_client import HttpGateway
 
 
-class ListController(AbstractController):
+class CreateController(AbstractController):
 	parameter_types = [ParameterType.plusclouds_api_path]
 
 	def execute_command(self, *args, **kwargs):
@@ -11,6 +11,10 @@ class ListController(AbstractController):
 
 		http_gateway = HttpGateway()
 
-		resp = http_gateway.get(path).json()
+		#
+		#
+		#
+
+		resp = http_gateway.post(path).json()
 
 		print(resp)
