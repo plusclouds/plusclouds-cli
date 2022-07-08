@@ -1,11 +1,16 @@
 from plusclouds.commands.controllers.abstract_controller import AbstractController
 from plusclouds.enums.parameter_types import ParameterType
-from plusclouds.util.token_util import set_token
+from plusclouds.gateway.http_client import HttpGateway
 
 
-class SetTokenController(AbstractController):
-	parameter_types = [ParameterType.token]
+class ListController(AbstractController):
+	parameter_types = [ParameterType.plusclouds_api_path]
 
 	def execute_command(self, *args, **kwargs):
-		token = self.get_parameter_values(**kwargs)[0]
-		set_token(token)
+		path = self.get_parameter_values(**kwargs)[0]
+
+		http_gateway = HttpGateway()
+
+		resp = http_gateway.get(path).json()
+
+		print(resp)
