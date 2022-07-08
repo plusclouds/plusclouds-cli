@@ -1,16 +1,19 @@
 from plusclouds.commands.controllers.abstract_controller import AbstractController
 from plusclouds.enums.parameter_types import ParameterType
 from plusclouds.gateway.http_client import HttpGateway
-
+from tests.command_tests.list_command_test import test_dict
 
 class ListController(AbstractController):
 	parameter_types = [ParameterType.plusclouds_api_path]
 
 	def execute_command(self, *args, **kwargs):
-		path = self.get_parameter_values(**kwargs)[0]
+		#path = self.get_parameter_values(**kwargs)[0]
 
-		http_gateway = HttpGateway()
+		#http_gateway = HttpGateway()
 
-		resp = http_gateway.get(path).json()
+		#resp = http_gateway.get(path).json()
 
-		print(resp)
+		resp = test_dict
+
+		#TODO : Parse Lists!
+
