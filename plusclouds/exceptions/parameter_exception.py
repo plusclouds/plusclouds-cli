@@ -1,6 +1,6 @@
-from plusclouds.exceptions import abstract_exception
+from plusclouds.exceptions.abstract_exception import AbstractException
 
 
-class NotImplementedException(abstract_exception):
+class ParameterException(AbstractException):
 	# Raised when Not Implemented
 	pass
