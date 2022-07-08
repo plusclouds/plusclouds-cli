@@ -1,11 +1,10 @@
-from plusclouds import cli, __app_name__
-import plusclouds.commands.test_commands
+from plusclouds.cli import CLI
 
 
 def main():
-    cli.app(prog_name=__app_name__)
+	CLI()
 
 
 if __name__ == "__main__":
-    main()
-
+	while True:
+		main()
