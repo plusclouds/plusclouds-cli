@@ -1,8 +1,6 @@
 # plusclouds-cli
-This repository is for connecting to the PlusClouds Ecosystem through the Command Line System. 
 
-
-
+This repository is for connecting to the PlusClouds Ecosystem through the Command Line System.
 
 To initiate this repository please execute the following command:
 
@@ -10,8 +8,13 @@ To initiate this repository please execute the following command:
 python -m pip install -r requirements.txt
 ```
 
-
 To test the repository execute the following script
+
 ```shell
  python -m pytest tests/
+```
+
+To execute the file
+```shell
+python -m plusclouds
 ```
