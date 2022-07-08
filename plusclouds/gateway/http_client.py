@@ -12,7 +12,7 @@ class HttpGateway:
 		self.option_request = None
 
 	def get(self, url: str = "") -> requests.Response:
-		full_url = plusclouds_url + "/" + url
+		full_url = plusclouds_url + url
 		self.latest_request = requests.get(full_url, headers={"Authorization": "Bearer " + self.token.strip()})
 		return self.latest_request
 
@@ -20,7 +20,7 @@ class HttpGateway:
 		if body is None:
 			body = {}
 
-		full_url = plusclouds_url + "/" + url
+		full_url = plusclouds_url + url
 		self.latest_request = requests.post(full_url, data=body,
 											headers={"Authorization": "Bearer " + self.token.strip()})
 		return self.latest_request
