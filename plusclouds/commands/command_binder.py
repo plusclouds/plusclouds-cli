@@ -8,5 +8,5 @@ from plusclouds.commands.controllers.abstract_controller import AbstractControll
 available_commands: Dict[str, AbstractController] = {
 	"set-token": SetTokenController(),
 	"list"     : ListController(),
-	"create" 	: CreateController()
+	"create"   : CreateController()
 }
