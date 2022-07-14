@@ -1,2 +1,1 @@
-plusclouds_url = "http://api.plusclouds.com/v2"
-
+plusclouds_url = "https://api.plusclouds.com/v2/"
