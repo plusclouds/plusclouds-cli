@@ -3,17 +3,23 @@ from plusclouds.enums.parameter_types import ParameterType
 from plusclouds.gateway.http_client import HttpGateway
 from tests.command_tests.list_command_test import test_dict
 
+
 class ListController(AbstractController):
 	parameter_types = [ParameterType.plusclouds_api_path]
 
 	def execute_command(self, *args, **kwargs):
-		#path = self.get_parameter_values(**kwargs)[0]
+		path = self.get_parameter_values(**kwargs)[0]
 
-		#http_gateway = HttpGateway()
+		http_gateway = HttpGateway()
 
-		#resp = http_gateway.get(path).json()
+		resp = http_gateway.get(path)
+		body = resp.json()
 
-		resp = test_dict
+		if resp.status_code >= 400:
+			print("Couldn't List results please try another path.")
+			return
 
-		#TODO : Parse Lists!
+		for item in body["data"]:
+			print("\n".join("{} : {}".format(key, value) for key,value in item.items()))
+			print("\n")
 
