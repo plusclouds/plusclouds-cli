@@ -7,7 +7,7 @@ readline.parse_and_bind("tab: complete")
 
 class CLIRecommender:
 	def __init__(self):
-		self.option_parser = OptionsParser()
+		self.option_parser = OptionsParser.get_instance()
 
 	def complete(self, text, state):
 		line = readline.get_line_buffer()
