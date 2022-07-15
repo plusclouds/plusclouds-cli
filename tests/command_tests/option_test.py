@@ -1,4 +1,4 @@
-option_data = {{
+option_data = {
 	"uri"        : "v2/iaas/virtual-machines",
 	"description": "",
 	"directories": [
@@ -110,4 +110,4 @@ option_data = {{
 			]
 		}
 	}
-}}
+}
