@@ -26,12 +26,11 @@ class OptionsParser:
 
 		OptionsParser.__instance = self
 
-	def get_latest_response(self):
 
-		def __join_url(self) -> str:
-			separator = "/"
+	def __join_url(self) -> str:
+		separator = "/"
 
-			return separator.join(self.current_directory)
+		return separator.join(self.current_directory)
 
 	def __get_response(self):
 
