@@ -15,13 +15,15 @@ def CLI() -> None:
 
 	command_paths = line.strip().split(" ")
 
-	if command_paths[0] not in available_commands.keys():
-		raise Exception("Invalid Command")
+	if line == "":
+		return
 
+	if command_paths[0] not in available_commands.keys():
+		print("Invalid Command")
+		return
 	command = available_commands[command_paths[0]]
 
 	command_paths.pop(0)  # pop the command to use the parameters
-	print(command_paths)
 
 	parameters = command.get_parameters()
 
