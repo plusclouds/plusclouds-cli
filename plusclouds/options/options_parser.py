@@ -1,20 +1,17 @@
 from plusclouds.gateway.http_client import HttpGateway
 
 
-
 class OptionsParser:
 	__instance = None
 
 	@staticmethod
-	def get_instance() -> __instance:
-		""" Static access method. """
-		if OptionsParser.__instance == None:
+	def get_instance() -> "OptionsParser":
+		if OptionsParser.__instance is None:
 			OptionsParser()
 		return OptionsParser.__instance
 
 	def __init__(self):
-
-		if OptionsParser.__instance != None:
+		if OptionsParser.__instance is not None:
 			raise Exception("This class is a singleton!")
 
 		self.response_cache = {}
@@ -25,7 +22,6 @@ class OptionsParser:
 		self.latest_response = self.gateway.options("").json()
 
 		OptionsParser.__instance = self
-
 
 	def __join_url(self) -> str:
 		separator = "/"
@@ -92,7 +88,7 @@ class OptionsParser:
 
 
 if __name__ == "__main__":
-	a = OptionsParser()
+	a = OptionsParser.get_instance()
 	a.advance_in_directory("communicator")
 	print(a.recommend(""))
 	print(a.alter_directory(["iaas", "compute-members"]))
