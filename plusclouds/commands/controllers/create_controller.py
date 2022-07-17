@@ -3,6 +3,8 @@ from plusclouds.enums.parameter_types import ParameterType
 from plusclouds.gateway.http_client import HttpGateway
 from plusclouds.options.options_parser import OptionsParser
 from tests.command_tests.option_test import option_data
+from plusclouds.exceptions.controller_exception import ControllerException
+from plusclouds.util.dict_checker import path_checker
 
 
 class CreateController(AbstractController):
@@ -15,16 +17,12 @@ class CreateController(AbstractController):
 
 		options_parser = OptionsParser.get_instance()
 
-		resp = options_parser.latest_response  # Start here
+		resp = option_data #options_parser.latest_response  # Start here
 
 		results = {}
+		paths = ["methods", "POSTs", "fields"]
 
-		# TODO: Berke Buraya fieldların kontrollerini koyman gerekiyor
-
-		if "methods" not in resp.keys() or "POST" not in resp["methods"].keys():
-			print("Cannot create with the following path.")
-			return
-
+		path_checker(resp, paths)
 		for key, value in resp["methods"]["POST"]["fields"][0].items():
 
 			if value.startswith("required"):
@@ -48,7 +46,9 @@ class CreateController(AbstractController):
 
 				results[key] = results[key] if results[key] != "" else None
 
+
 		print(results)
+
 		resp = http_gateway.post(path, body=results)
 		body = resp.json()
 
