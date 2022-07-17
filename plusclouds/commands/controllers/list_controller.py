@@ -1,7 +1,7 @@
 from plusclouds.commands.controllers.abstract_controller import AbstractController
 from plusclouds.enums.parameter_types import ParameterType
 from plusclouds.gateway.http_client import HttpGateway
-from tests.command_tests.list_command_test import test_dict
+from plusclouds.handler.response_handler import response_handler
 
 
 class ListController(AbstractController):
@@ -13,13 +13,15 @@ class ListController(AbstractController):
 		http_gateway = HttpGateway()
 
 		resp = http_gateway.get(path)
-		body = resp.json()
+		response_handler(resp=resp)
 
-		if resp.status_code >= 400:
-			print("Couldn't List results please try another path.")
-			return
-
-		for item in body["data"]:
-			print("\n".join("{} : {}".format(key, value) for key,value in item.items()))
-			print("\n")
+		# body = resp.json()
+		#
+		# if resp.status_code >= 400:
+		# 	print("Couldn't List results please try another path.")
+		# 	return
+		#
+		# for item in body["data"]:
+		# 	print("\n".join("{} : {}".format(key, value) for key,value in item.items()))
+		# 	print("\n")
 
