@@ -11,8 +11,12 @@ def CLI() -> None:
 	completer = CLIRecommender()
 	readline.set_completer(completer.complete)
 
-	line = input('PlusClouds> ')
-
+	try:
+		line = input('PlusClouds> ')
+	except KeyboardInterrupt:
+		print("\nClosing PlusClouds CLI\nHave a great day!")
+		exit(0)
+		return
 	command_paths = line.strip().split(" ")
 
 	if line == "":
