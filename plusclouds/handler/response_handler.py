@@ -33,7 +33,7 @@ def list_response_handler(data_list):
 	if len(data_list) > 6:
 		for data in data_list:
 			item_response_handler(data)
-			return
+		return
 
 	final_data = []
 	for i in range(len(data_list)):
