@@ -3,11 +3,13 @@ def status_code_handler(func):
 		resp = kwargs["resp"]
 		body = resp.json()
 
-		if resp.status_code == 422:
+		if resp.status_code == 422 or resp.status_code == 404:
 			if "errors" in body:
 				print(body["message"])
 				for error, error_res in body["errors"].items():
 					print("{} : {}".format(error, error_res))
+			if "error" in body and "message" in body["error"]:
+				print("{}".format(body["error"]["message"]))
 			return
 		if resp.status_code == 401:
 			print(
@@ -16,6 +18,6 @@ def status_code_handler(func):
 		if resp.status_code < 300:
 			func(*args, **kwargs)
 		else:
-			print("Unable to parse the response.")
+			print("Unable to parse the response.", resp.status_code, resp.json())
 
 	return check_status_code
