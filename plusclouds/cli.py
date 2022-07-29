@@ -31,7 +31,20 @@ def CLI() -> None:
 
 	parameters = command.get_parameters()
 
-	kwargs = {}
+	kwargs = {"query_parameters": {}}
+
+	# Query Parameter / Flags get from input
+
+	for i in range(len(command_paths)):
+		if len(command_paths) > 2 and command_paths[i][:2] == "--":
+			if i + 1 >= len(command_paths):
+				break
+			if command_paths[i + 1] == "true" or command_paths[i + 1] == "false":
+				kwargs["query_parameters"][command_paths[i][2:]] = bool(str.capitalize(command_paths[i + 1]))
+			else:
+				kwargs["query_parameters"][command_paths[i][2:]] = command_paths[i + 1]
+			command_paths.pop(i)
+			command_paths.pop(i)
 
 	for i in range(len(parameters)):
 		parameter_type = parameters[i]

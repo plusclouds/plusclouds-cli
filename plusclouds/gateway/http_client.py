@@ -25,16 +25,22 @@ class HttpGateway:
 		self.option_request = None
 
 	@get_cache
-	def get(self, url: str = "") -> requests.Response:
+	def get(self, url: str = "", query=None) -> requests.Response:
+		if query is None:
+			query = {}
+		else:
+			get_dict.clear()
+
 		full_url = plusclouds_url + url
-		self.latest_request = requests.get(full_url, headers={"Authorization": "Bearer " + self.token.strip()})
+		self.latest_request = requests.get(full_url, params=query,
+										   headers={"Authorization": "Bearer " + self.token.strip()})
 		return self.latest_request
 
 	@post_cache
 	def post(self, url: str = "", body=None) -> requests.Response:
 		if body is None:
 			body = {}
-
+		post_dict.clear()
 		full_url = plusclouds_url + url
 		self.latest_request = requests.post(full_url, data=body,
 											headers={"Authorization": "Bearer " + self.token.strip()})
@@ -43,4 +49,5 @@ class HttpGateway:
 	@options_cache
 	def options(self, url: str = "") -> requests.Response:
 		self.option_request = requests.request("OPTIONS", self.base_url + url)
+
 		return self.option_request
