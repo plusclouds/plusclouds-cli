@@ -29,12 +29,9 @@ def list_response_handler(data_list):
 	if len(data_list) == 0:
 		print("-----------List Empty------------")
 		return
-
-	if len(data_list) > 6:
-		for data in data_list:
-			item_response_handler(data)
-		return
-
+#	if len(data_list) > 6:
+#		for data in data_list:
+#			item_response_handler(data)
 	final_data = []
 	for i in range(len(data_list)):
 		current_data = []
