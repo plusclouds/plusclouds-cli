@@ -12,7 +12,7 @@ class ListController(AbstractController):
 
 		http_gateway = HttpGateway()
 
-		resp = http_gateway.get(path)
+		resp = http_gateway.get(path, kwargs["query_parameters"])
 		response_handler(resp=resp)
 
 		# body = resp.json()
