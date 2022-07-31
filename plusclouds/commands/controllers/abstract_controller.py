@@ -15,7 +15,15 @@ class AbstractController:
 
 		parameter_value = []
 		for param_type in params:
-			parameter_value.append(kwargs[param_type.name])
+			try:
+				current_param = kwargs[param_type.name]
+			except KeyError as e:
+			#	print("{} Parameter doesn't exist on the command.".format(e.__str__()))
+				parameter_value.append("")
+
+				continue
+
+			parameter_value.append(current_param)
 
 		return parameter_value
 

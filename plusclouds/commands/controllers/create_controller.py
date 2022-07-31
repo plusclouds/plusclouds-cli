@@ -2,7 +2,6 @@ from plusclouds.commands.controllers.abstract_controller import AbstractControll
 from plusclouds.enums.parameter_types import ParameterType
 from plusclouds.gateway.http_client import HttpGateway
 from plusclouds.options.options_parser import OptionsParser
-from tests.command_tests.option_test import option_data
 from plusclouds.exceptions.controller_exception import ControllerException
 from plusclouds.util.dict_checker import path_checker
 
@@ -17,7 +16,7 @@ class CreateController(AbstractController):
 
 		options_parser = OptionsParser.get_instance()
 
-		resp = option_data #options_parser.latest_response  # Start here
+		resp = options_parser.latest_response  # Start here
 
 		results = {}
 		paths = ["methods", "POSTs", "fields"]
@@ -46,9 +45,7 @@ class CreateController(AbstractController):
 
 				results[key] = results[key] if results[key] != "" else None
 
-
 		print(results)
 
 		resp = http_gateway.post(path, body=results)
 		body = resp.json()
-
