@@ -1,6 +1,6 @@
 import os.path
 
-token_id: int = 1
+token_id = 1
 
 
 def set_token(token: str):

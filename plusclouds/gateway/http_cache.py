@@ -16,7 +16,7 @@ def cache_constructor(cache_dict: dict):
 			url = get_key(kwargs,"url")
 
 			url += get_key(kwargs,"query")
-			url += get_key(kwargs,"body")
+			url += str(get_key(kwargs,"body"))
 
 			if url == "":
 				url = "_"

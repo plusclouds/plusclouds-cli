@@ -1,7 +1,7 @@
 from plusclouds.reccommender.cli_recommender import CLIRecommender
 import readline
 from plusclouds.commands.command_binder import available_commands
-from plusclouds.enums.parameter_types import ParameterType
+from plusclouds.enums.parameter_types import ParameterType, NullableParameters
 from plusclouds.gateway.http_client import HttpGateway
 
 global_http_variable = HttpGateway()
@@ -52,6 +52,16 @@ def CLI() -> None:
 			kwargs[parameter_type.name] = "/".join(command_paths)
 			break
 
-		kwargs[parameter_type.name] = command_paths[i]
+		try:
+			kwargs[parameter_type.name] = command_paths[i]
+		except IndexError as e:
+			if parameter_type in NullableParameters():
+				kwargs[parameter_type.name] = ""
+			else:
+				print("Please provide the following variables:\n\t", end="")
+				for par in parameters:
+					print(par.name, end="\t")
+
+				print("", end="\n")
 
 	command.execute_command(**kwargs)
