@@ -18,6 +18,9 @@ def status_code_handler(func):
 		if resp.status_code < 300:
 			func(*args, **kwargs)
 		else:
-			print("Unable to parse the response.", resp.status_code, resp.json())
+			print("Unable to parse the response.\n",
+			"Status code: ", resp.status_code, sep='')
+			if "error" in body and "message" in body["error"]:
+				print("Error Message: {}".format(body["error"]["message"]))
 
 	return check_status_code
